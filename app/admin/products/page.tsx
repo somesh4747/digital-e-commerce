@@ -29,11 +29,12 @@ import {
     ToggleProductStatus,
 } from './_components/product-status-change'
 
-export default async function () {
+export default async function ProductPage() {
     const products = await db.product.findMany({
         select: {
             id: true,
             filePath: true,
+            description: true,
             priceInCents: true,
             isAvailableForPurchase: true,
             name: true,
@@ -42,7 +43,7 @@ export default async function () {
 
         orderBy: { name: 'asc' },
     })
-    console.log(products)
+    // console.log(products)
 
     return (
         <>
