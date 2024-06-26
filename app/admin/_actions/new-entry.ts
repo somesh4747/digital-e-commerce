@@ -24,14 +24,14 @@ export default async function productsEntry(
         validateFields.data
 
     await fs.mkdir('products', { recursive: true })
-    const filePath = `products/${crypto.randomUUID()}-${downloadableItem.name}`
+    const filePath = `products/${crypto.randomUUID()}__${downloadableItem.name}`
     await fs.writeFile(
         filePath,
         Buffer.from(await downloadableItem.arrayBuffer())
     )
 
     await fs.mkdir('public/products', { recursive: true })
-    const imagePath = `/products/${crypto.randomUUID()}-${image.name}`
+    const imagePath = `/products/${crypto.randomUUID()}__${image.name}`
     await fs.writeFile(
         `public${imagePath}`,
         Buffer.from(await image.arrayBuffer())

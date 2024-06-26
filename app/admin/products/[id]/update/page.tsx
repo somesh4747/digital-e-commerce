@@ -17,13 +17,16 @@ import db from '@/lib/db'
 import { getProductDetails } from '@/app/admin/_actions/get-product'
 import { useRouter } from 'next/navigation'
 
+import Image from 'next/image'
+
 function ProductEditPage({ params: { id } }: { params: { id: string } }) {
     const [priceInCents, setPriceInCents] = useState<any>()
     const [priceInRuppes, setPriceInRuppes] = useState<any>()
     const [productDetails, setproductDetails] = useState({
         name: '',
         description: '',
-        price: 0,
+        file: '',
+        image: '',
     })
 
     // const { toast } = useToast()
@@ -33,10 +36,16 @@ function ProductEditPage({ params: { id } }: { params: { id: string } }) {
         // 🤣🤣🤣🤣 lollllll
         const getLala = async () => {
             const data = await getProductDetails(id)
+
+            if (data?.priceInCents) {
+                setPriceInCents(data?.priceInCents)
+                setPriceInRuppes(+data?.priceInCents / 100)
+            }
             setproductDetails({
                 name: data?.name || '',
                 description: data?.description || '',
-                price: data?.priceInCents || 0,
+                file: data?.filePath || '',
+                image: data?.imagePath || '',
             })
 
             router.refresh()
@@ -137,6 +146,13 @@ function ProductEditPage({ params: { id } }: { params: { id: string } }) {
                     />
                 </div>
                 <div>
+                    <div className="text-sky-400 my-3">
+                        {productDetails.file
+                            ? `Previous File : ${
+                                  productDetails.file.match(/__(.*)/)[1]
+                              }`
+                            : ''}
+                    </div>
                     <label htmlFor="downloadableItem">Product</label>
                     <Input
                         type="file"
@@ -150,11 +166,25 @@ function ProductEditPage({ params: { id } }: { params: { id: string } }) {
                     </div>
                 </div>
                 <div>
+                    <div className="text-sky-400 my-3">
+                        {productDetails.image
+                            ? `Previous Image : ${
+                                  productDetails.image.match(/__(.*)/)[1]
+                              }`
+                            : ''}
+                    </div>
                     <label htmlFor="image">Product image</label>
                     <Input type="file" name="image" id="image" />
                     <div className="text-red-400">
                         {response.error?.image ? response.error.image : ''}
                     </div>
+                    <Image
+                    className='my-5'
+                        src={productDetails.image}
+                        height="400"
+                        width="200"
+                        alt="product img"
+                    />
                 </div>
 
                 <Button type="submit" disabled={pending} className="">
