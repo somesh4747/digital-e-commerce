@@ -5,7 +5,7 @@ import { useTheme } from 'next-themes'
 export const dynamic = 'force-dynamic'
 import { Toaster } from '@/components/ui/toaster'
 
-export default function AdminLayout({
+export default function Layout({
     children,
 }: Readonly<{
     children: React.ReactNode
@@ -15,17 +15,18 @@ export default function AdminLayout({
         <div>
             <nav className="flex justify-center items-start p-4 space-x-2">
                 <NavElement href="/">Home</NavElement>
-                <NavElement href="/admin">dashboard</NavElement>
-                <NavElement href="/admin/products">products</NavElement>
-                <NavElement href="/admin/customers">customers</NavElement>
-                <NavElement href="/admin/sales">sales</NavElement>
+                <NavElement href="/products">products</NavElement>
+                <NavElement href="/orders">orders</NavElement>
+                <NavElement className={'!ml-auto'} href="/admin">
+                    admin
+                </NavElement>
                 <button
                     onClick={() => {
                         if (theme === 'dark') setTheme('light')
                         else setTheme('dark')
                     }}
                 >
-                    chage
+                    Theme Change
                 </button>
             </nav>
 

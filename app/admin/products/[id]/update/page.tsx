@@ -188,7 +188,7 @@ function ProductEditPage({ params: { id } }: { params: { id: string } }) {
                 </div>
 
                 <Button type="submit" disabled={pending} className="">
-                    Add
+                    Update
                     <span
                         className={cn('animate-spin', {
                             invisible: !pending,

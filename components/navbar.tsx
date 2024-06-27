@@ -8,9 +8,11 @@ import React from 'react'
 export default function NavElement({
     children,
     href,
+    className,
 }: {
     children: React.ReactNode
     href: string
+    className?: string
 }) {
     const path = usePathname()
     return (
@@ -20,7 +22,8 @@ export default function NavElement({
                 {
                     'bg-gray-600': path === href,
                 },
-                'p-2 capitalize rounded-sm hover:bg-sky-700 transition-colors duration-300'
+                'p-2 capitalize rounded-sm hover:bg-sky-700 transition-colors duration-300',
+                className
             )}
         >
             {children}

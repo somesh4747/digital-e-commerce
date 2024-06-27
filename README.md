@@ -6,6 +6,11 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 1. refactor new product entry
 2. refactor update product page
+3. add hashing in admin password (more security)
+
+# ToDo:
+
+1. search in products page /
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
