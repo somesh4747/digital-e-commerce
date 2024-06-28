@@ -3,6 +3,7 @@
 import db from '@/lib/db'
 import { productUpdateSchema } from '@/schemas'
 import fs from 'fs/promises'
+import { revalidatePath } from 'next/cache'
 import { notFound, redirect } from 'next/navigation'
 
 export default async function productUpdate(
@@ -67,5 +68,7 @@ export default async function productUpdate(
         },
     })
 
+    revalidatePath('/')
+    revalidatePath('/products')
     redirect('/admin/products')
 }

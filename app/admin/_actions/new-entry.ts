@@ -7,6 +7,7 @@ import { productsEntrySchema } from '@/schemas'
 import fs from 'fs/promises'
 import { error } from 'console'
 import { redirect } from 'next/navigation'
+import { revalidatePath } from 'next/cache'
 
 export default async function productsEntry(
     prevState: unknown,
@@ -48,6 +49,8 @@ export default async function productsEntry(
         },
     })
 
+    revalidatePath('/')
+    revalidatePath('/products')
     redirect('/admin/products')
     return { success: 'Product Added' }
 }

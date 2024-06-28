@@ -16,7 +16,7 @@ export default function Layout({
             <nav className="flex justify-center items-start p-4 space-x-2">
                 <NavElement href="/">Home</NavElement>
                 <NavElement href="/products">products</NavElement>
-                <NavElement href="/orders">orders</NavElement>
+                <NavElement href="/orders">my orders</NavElement>
                 <NavElement className={'!ml-auto'} href="/admin">
                     admin
                 </NavElement>

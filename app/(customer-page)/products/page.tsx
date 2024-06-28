@@ -23,12 +23,27 @@ export default async function Home() {
 }
 
 async function SuspenseElement() {
-    const newestProducts = await db.product.findMany()
+    const newestProducts = await db.product.findMany({
+        where: {
+            isAvailableForPurchase: true,
+        },
+        select: {
+            id: true,
+            name: true,
+            description: true,
+            priceInCents: true,
+            imagePath: true,
+        },
+        orderBy: {
+            name: 'asc',
+        },
+    })
 
     return (
         <div className="flex flex-wrap justify-start items-start mt-7  gap-4">
             {newestProducts.map((product, index) => (
                 <ProductCard
+                    productId={product.id}
                     key={index}
                     name={product.name}
                     image={product.imagePath}

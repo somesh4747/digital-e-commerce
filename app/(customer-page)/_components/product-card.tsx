@@ -11,13 +11,16 @@ import Image from 'next/image'
 import { formatter } from '@/lib/currency-formatter'
 import { Button } from '@/components/ui/button'
 import { Skeleton } from '@/components/ui/skeleton'
+import Link from 'next/link'
 
 export default function ProductCard({
     name,
     description,
     image,
     price,
+    productId,
 }: {
+    productId: string
     name: string
     description?: string
     price: number
@@ -35,7 +38,11 @@ export default function ProductCard({
                 </CardDescription>
             </div>
             <div className="m-3">
-                <Button className="w-full">Purchase</Button>
+                <Button asChild className="w-full">
+                    <Link href={`/products/${productId}/purchase`}>
+                        Purchase
+                    </Link>
+                </Button>
             </div>
             <div className="p-4 font-medium text-2xl tracking-wide hover:text-red-500">
                 {formatter.format(price)}

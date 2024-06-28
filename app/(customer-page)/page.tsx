@@ -16,16 +16,33 @@ async function getPopularProducts() {
                 _count: 'desc',
             },
         },
+        select: {
+            id: true,
+            name: true,
+            description: true,
+            priceInCents: true,
+            imagePath: true,
+            cratedAt: true,
+        },
+
         take: 5,
     })
 }
-async function getNewestProducts() {
+const getNewestProducts = async () => {
     return await db.product.findMany({
         where: {
             isAvailableForPurchase: true,
         },
         orderBy: {
             cratedAt: 'desc',
+        },
+        select: {
+            id: true,
+            name: true,
+            description: true,
+            priceInCents: true,
+            imagePath: true,
+            cratedAt: true,
         },
         take: 5,
     })
@@ -76,6 +93,7 @@ async function ActualProductElements({
         <div className="flex flex-wrap justify-start items-start mt-7 gap-4">
             {newestProducts.map((product, index) => (
                 <ProductCard
+                    productId={product.id}
                     key={index}
                     name={product.name}
                     image={product.imagePath}
