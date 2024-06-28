@@ -25,6 +25,7 @@ export default async function ProductPurchasePage({
                 Invalid product ID
             </div>
         )
+
     return (
         <div className="flex justify-center md:flex-row-reverse flex-col-reverse items-center m-5 flex-wrap gap-7">
             <div className="space-y-2 flex flex-col justify-center items-center text-center md:text-left md:items-start max-w-[500px]">

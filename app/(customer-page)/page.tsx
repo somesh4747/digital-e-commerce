@@ -85,7 +85,16 @@ export default async function Home() {
 async function ActualProductElements({
     getFunction,
 }: {
-    getFunction: () => Promise<Product[]>
+    getFunction: () => Promise<
+        {
+            id: string
+            name: string
+            priceInCents: number
+            imagePath: string
+            description: string
+            cratedAt: Date
+        }[]
+    >
 }) {
     const newestProducts = await getFunction()
 

@@ -29,7 +29,7 @@ export default function ProductCard({
     return (
         <Card className="w-full md:max-w-[300px] relative shadow-lg">
             <div className=" relative w-full h-auto aspect-video overflow-hidden rounded-t-md">
-                <img src={image} className="w-full h-full" alt={name} />
+                <img src={image} className="w-full h-auto" alt={name} />
             </div>
             <div className="p-4">
                 <CardTitle className="capitalize">{name}</CardTitle>
