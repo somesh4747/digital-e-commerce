@@ -12,7 +12,7 @@ import { revalidatePath } from 'next/cache'
 export default async function productsEntry(
     prevState: unknown,
     formData: FormData
-) {
+): Promise<{ error?: any; success?: any }> {
     const validateFields = productsEntrySchema.safeParse(
         Object.fromEntries(formData.entries())
     )

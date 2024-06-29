@@ -2,14 +2,14 @@
 
 import db from '@/lib/db'
 import { productUpdateSchema } from '@/schemas'
-import fs from 'fs/promises'
 import { revalidatePath } from 'next/cache'
 import { notFound, redirect } from 'next/navigation'
+import fs from 'fs/promises'
 
 export default async function productUpdate(
     prevState: unknown,
     formData: FormData
-) {
+): Promise<{ error?: any; success?: any }> {
     const validateFields = productUpdateSchema.safeParse(
         Object.fromEntries(formData.entries())
     )

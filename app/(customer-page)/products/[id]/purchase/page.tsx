@@ -2,6 +2,7 @@ import { Button } from '@/components/ui/button'
 import { formatter } from '@/lib/currency-formatter'
 import db from '@/lib/db'
 import Image from 'next/image'
+import Link from 'next/link'
 import React from 'react'
 
 export default async function ProductPurchasePage({
@@ -31,8 +32,10 @@ export default async function ProductPurchasePage({
             <div className="space-y-2 flex flex-col justify-center items-center text-center md:text-left md:items-start max-w-[500px]">
                 <div className="text-2xl capitalize ">{product.name}</div>
                 <p className="text-gray-500">{product.description}</p>
-                <Button className="font-medium">
-                    Pay {formatter.format(product.priceInCents / 100)}
+                <Button asChild className="font-medium">
+                    <Link href={`/products/${id}/payment `}>
+                        Pay {formatter.format(product.priceInCents / 100)}
+                    </Link>
                 </Button>
             </div>
             <div className="relative max-w-[500px] rounded-xl">
