@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { auth } from '@/auth'
 
 export default auth(async (req) => {
-    // console.log(req.nextUrl)
+    // console.log(req.auth)
     if ((await isAuthenticated(req)) == false) {
         return new NextResponse('Unauthorized', {
             status: 401,

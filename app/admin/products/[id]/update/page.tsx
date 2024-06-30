@@ -51,7 +51,7 @@ function ProductEditPage({ params: { id } }: { params: { id: string } }) {
             router.refresh()
         }
         getLala()
-    }, [])
+    }, [router])
     // ------------------------------------------------------------
     const [response, action] = useFormState(productUpdate, {})
     const { pending } = useFormStatus()
@@ -148,9 +148,9 @@ function ProductEditPage({ params: { id } }: { params: { id: string } }) {
                 <div>
                     <div className="text-sky-400 my-3">
                         {productDetails.file
-                            ? `Previous File : ${
-                                  productDetails.file.match(/__(.*)/)[1]
-                              }`
+                            ? `Previous File : ${productDetails.file
+                                  .split('__')
+                                  .pop()}`
                             : ''}
                     </div>
                     <label htmlFor="downloadableItem">Product</label>
@@ -168,9 +168,9 @@ function ProductEditPage({ params: { id } }: { params: { id: string } }) {
                 <div>
                     <div className="text-sky-400 my-3">
                         {productDetails.image
-                            ? `Previous Image : ${
-                                  productDetails.image.match(/__(.*)/)[1]
-                              }`
+                            ? `Previous Image : ${productDetails.image
+                                  .split('__')
+                                  .pop()}`
                             : ''}
                     </div>
                     <label htmlFor="image">Product image</label>
@@ -179,7 +179,7 @@ function ProductEditPage({ params: { id } }: { params: { id: string } }) {
                         {response.error?.image ? response.error.image : ''}
                     </div>
                     <Image
-                    className='my-5'
+                        className="my-5"
                         src={productDetails.image}
                         height="400"
                         width="200"

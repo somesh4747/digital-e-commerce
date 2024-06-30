@@ -12,14 +12,17 @@ export async function GET(
             id: id,
         },
     })
-    if (!product) return notFound()
+    if (!product)
+        return new NextResponse('invalid product', {
+            status: 404,
+        })
 
     const file = await fs.readFile(product.filePath)
     const { size } = await fs.stat(product.filePath)
 
     //using regex is fun and great approach
-    const extension = product?.filePath.match(/\.([0-9a-z]+)(?:[\?#]|$)/i)[1]
-    console.log(extension)
+    const extension = product?.filePath.split('.').pop()
+    // console.log(extension)
     //for getting the extension
 
     return new NextResponse(file, {

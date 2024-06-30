@@ -51,6 +51,7 @@ function NewProductEntry() {
                         placeholder="Description"
                         name="description"
                         id="description"
+                        required
                     />
                     <div className="text-red-400">
                         {response.error?.description
@@ -102,6 +103,7 @@ function NewProductEntry() {
                         type="file"
                         name="downloadableItem"
                         id="downloadableItem"
+                        required
                     />
                     <div className="text-red-400">
                         {response.error?.downloadableItem
@@ -111,7 +113,7 @@ function NewProductEntry() {
                 </div>
                 <div>
                     <label htmlFor="image">Product image</label>
-                    <Input type="file" name="image" id="image" />
+                    <Input type="file" name="image" id="image" required />
                     <div className="text-red-400">
                         {response.error?.image ? response.error.image : ''}
                     </div>
