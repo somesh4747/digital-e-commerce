@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server'
+import { auth } from '@/auth'
 
-export async function middleware(req: NextRequest) {
+export default auth(async (req) => {
+    // console.log(req.nextUrl)
     if ((await isAuthenticated(req)) == false) {
         return new NextResponse('Unauthorized', {
             status: 401,
@@ -9,7 +11,24 @@ export async function middleware(req: NextRequest) {
             },
         })
     }
-}
+})
+
+//->>>>>>>>>>.without using auth.js <<<<<<<<<<<<<<<<----
+
+// export default async function middleware(req: NextRequest) {
+//     // console.log(req.cookies)
+//     console.log(req)
+
+//     // console.log(a)
+//     // if ((await isAuthenticated(req)) == false) {
+//     //     return new NextResponse('Unauthorized', {
+//     //         status: 401,
+//     //         headers: {
+//     //             'WWW-Authenticate': 'basic',
+//     //         },
+//     //     })
+//     // }
+// }
 
 async function isAuthenticated(req: NextRequest) {
     const authHeader =
@@ -25,10 +44,10 @@ async function isAuthenticated(req: NextRequest) {
         password === process.env.ADMIN_PASSWORD
     ) {
         return true
-    } 
+    }
     return false
 }
 
 export const config = {
-    matcher: '/admin/:path*',
+    matcher: ['/((?!api|_next/static|_next/image|favicon.ico).*)'],
 }

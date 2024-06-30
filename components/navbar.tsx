@@ -20,9 +20,10 @@ export default function NavElement({
             href={href}
             className={cn(
                 {
-                    'bg-gray-600': path === href,
+                    'dark:bg-gray-600': path === href,
+                    'bg-sky-400': path === href,
                 },
-                'p-2 capitalize rounded-sm hover:bg-sky-700 transition-colors duration-300',
+                'p-2 capitalize rounded-sm dark:hover:bg-sky-700 hover:bg-sky-200 transition-colors duration-300 shadow-lg',
                 className
             )}
         >

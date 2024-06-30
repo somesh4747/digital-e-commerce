@@ -14,6 +14,7 @@ import React, { useState } from 'react'
 import { useFormState, useFormStatus } from 'react-dom'
 import { MdError } from 'react-icons/md'
 import { FaCheckCircle } from 'react-icons/fa'
+import { signIn, useSession } from 'next-auth/react'
 
 export default function PaymentPage({
     params: { id },
@@ -22,6 +23,16 @@ export default function PaymentPage({
 }) {
     //
     const [response, action] = useFormState(handleOrder, {})
+    const user = useSession().data?.user
+
+    if (!user)
+        return (
+            <>
+                <div className="flex justify-center items-center">
+                    <Button onClick={() => signIn()}>Log in first</Button>
+                </div>
+            </>
+        )
     return (
         //
         <div className="m-5 flex justify-center items-center">
@@ -60,6 +71,7 @@ export default function PaymentPage({
                                     type="email"
                                     id="name"
                                     name="email"
+                                    defaultValue={user?.email || ''}
                                 />
                             </div>
                             {/* form submit button for useFormStatus */}
@@ -96,7 +108,7 @@ export default function PaymentPage({
         </div>
     )
 }
-    
+
 function Submit() {
     const status = useFormStatus()
     return (
