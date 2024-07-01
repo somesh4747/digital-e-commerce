@@ -2,15 +2,21 @@ import { NextRequest, NextResponse } from 'next/server'
 import { auth } from '@/auth'
 
 export default auth(async (req) => {
-    // console.log(req.auth)
-    if ((await isAuthenticated(req)) == false) {
-        return new NextResponse('Unauthorized', {
-            status: 401,
-            headers: {
-                'WWW-Authenticate': 'basic',
-            },
-        })
+    const isAdminRoute = req.nextUrl.pathname.startsWith('/admin')
+
+    if (!isAdminRoute) return
+
+    if (isAdminRoute) {
+        if ((await isAuthorized(req)) == false)
+            return new NextResponse('Unauthorized', {
+                status: 401,
+                headers: {
+                    'WWW-Authenticate': 'basic',
+                },
+            })
     }
+
+    return
 })
 
 //->>>>>>>>>>.without using auth.js <<<<<<<<<<<<<<<<----
@@ -20,7 +26,7 @@ export default auth(async (req) => {
 //     console.log(req)
 
 //     // console.log(a)
-//     // if ((await isAuthenticated(req)) == false) {
+//     // if ((await isAuthorized(req)) == false) {
 //     //     return new NextResponse('Unauthorized', {
 //     //         status: 401,
 //     //         headers: {
@@ -30,7 +36,7 @@ export default auth(async (req) => {
 //     // }
 // }
 
-async function isAuthenticated(req: NextRequest) {
+async function isAuthorized(req: NextRequest) {
     const authHeader =
         req.headers.get('authorization') || req.headers.get('Authorization')
     if (!authHeader) return false
