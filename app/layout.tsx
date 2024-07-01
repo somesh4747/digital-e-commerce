@@ -5,6 +5,8 @@ import './globals.css'
 import { ThemeProvider } from '@/components/theme-provider'
 import { SessionProvider } from 'next-auth/react'
 
+export const dynamic = 'force-dynamic'
+
 const inter = Poppins({
     subsets: ['latin'],
     weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900'],
