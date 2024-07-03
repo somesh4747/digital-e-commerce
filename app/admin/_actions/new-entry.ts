@@ -1,13 +1,25 @@
 'use server'
 
 import db from '@/lib/db'
-import z from 'zod'
 
 import { productsEntrySchema } from '@/schemas'
-import fs from 'fs/promises'
-import { error } from 'console'
+
 import { redirect } from 'next/navigation'
 import { revalidatePath } from 'next/cache'
+
+import { S3Client, PutObjectCommand } from '@aws-sdk/client-s3'
+import { getSignedUrl } from '@aws-sdk/s3-request-presigner'
+
+const productURL = 'digital-e-commerce/products'
+const productImageURL = 'digital-e-commerce/images'
+
+const s3 = new S3Client({
+    region: process.env.AWS_REGION!,
+    credentials: {
+        accessKeyId: process.env.AWS_ACCESS_KEY!,
+        secretAccessKey: process.env.AWS_ACCESS_SECRET_KEY!,
+    },
+})
 
 export default async function productsEntry(
     prevState: unknown,
@@ -24,19 +36,50 @@ export default async function productsEntry(
     const { itemName, description, priceInCents, downloadableItem, image } =
         validateFields.data
 
-    await fs.mkdir('products', { recursive: true })
-    const filePath = `products/${crypto.randomUUID()}__${downloadableItem.name}`
-    await fs.writeFile(
-        filePath,
-        Buffer.from(await downloadableItem.arrayBuffer())
-    )
+    // creating file and image name
+    const fileName = `__${crypto.randomUUID()}~~${downloadableItem.name
+        .trim()
+        .replace(/ /gi, '-')}`
+    const imageName = `__${crypto.randomUUID()}~~${image.name
+        .trim()
+        .replace(/ /gi, '-')}`
 
-    await fs.mkdir('public/products', { recursive: true })
-    const imagePath = `/products/${crypto.randomUUID()}__${image.name}`
-    await fs.writeFile(
-        `public${imagePath}`,
-        Buffer.from(await image.arrayBuffer())
-    )
+    // creating and sending file to signedURL
+    const fileUploadCommand = new PutObjectCommand({
+        Bucket: process.env.AWS_S3_BUCKET_NAME!,
+        Key: `${productURL}/${fileName}`,
+    })
+    const imageUploadCommand = new PutObjectCommand({
+        Bucket: process.env.AWS_S3_BUCKET_NAME!,
+        Key: `${productImageURL}/${imageName}`,
+    })
+
+    const signedUrlForFile = await getSignedUrl(s3, fileUploadCommand, {
+        expiresIn: 200,
+    })
+    const signedUrlForImage = await getSignedUrl(s3, imageUploadCommand, {
+        expiresIn: 200,
+    })
+
+    const response = await fetch(signedUrlForFile, {
+        method: 'PUT',
+        body: downloadableItem,
+        headers: {
+            'Content-type': downloadableItem.type,
+        },
+    })
+    const response2 = await fetch(signedUrlForImage, {
+        method: 'PUT',
+        body: image,
+        headers: {
+            'Content-type': downloadableItem.type,
+        },
+    })
+
+    // https://sk-my-first-bucket.s3.ap-south-1.amazonaws.com/digital-e-commerce/products/245c4f73-f9a5-4749-a2a4-3373ae6d3b7c__for_downloading_.png
+
+    const filePath = `https://${process.env.AWS_S3_BUCKET_NAME}.s3.${process.env.AWS_REGION}.amazonaws.com/${productURL}/${fileName}`
+    const imagePath = `https://${process.env.AWS_S3_BUCKET_NAME}.s3.${process.env.AWS_REGION}.amazonaws.com/${productImageURL}/${imageName}`
     // return
     await db.product.create({
         data: {

@@ -30,7 +30,7 @@ function ProductEditPage({ params: { id } }: { params: { id: string } }) {
     })
 
     // const { toast } = useToast()
-    const router = useRouter()
+    // const router = useRouter()
     // -------------------need to improve-------------------------------
     useEffect(() => {
         // 🤣🤣🤣🤣 lollllll
@@ -48,10 +48,10 @@ function ProductEditPage({ params: { id } }: { params: { id: string } }) {
                 image: data?.imagePath || '',
             })
 
-            router.refresh()
+            // router.refresh()
         }
         getLala()
-    }, [router])
+    }, [])
     // ------------------------------------------------------------
     const [response, action] = useFormState(productUpdate, {})
     const { pending } = useFormStatus()
@@ -149,7 +149,7 @@ function ProductEditPage({ params: { id } }: { params: { id: string } }) {
                     <div className="text-sky-400 my-3">
                         {productDetails.file
                             ? `Previous File : ${productDetails.file
-                                  .split('__')
+                                  .split('~~')
                                   .pop()}`
                             : ''}
                     </div>
@@ -169,7 +169,7 @@ function ProductEditPage({ params: { id } }: { params: { id: string } }) {
                     <div className="text-sky-400 my-3">
                         {productDetails.image
                             ? `Previous Image : ${productDetails.image
-                                  .split('__')
+                                  .split('~~')
                                   .pop()}`
                             : ''}
                     </div>
@@ -181,7 +181,7 @@ function ProductEditPage({ params: { id } }: { params: { id: string } }) {
                     <Image
                         className="my-5"
                         src={productDetails.image}
-                        height="400"
+                        height="200"
                         width="200"
                         alt="product img"
                     />
