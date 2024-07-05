@@ -25,7 +25,7 @@ export default function AdminLayout({
                         else setTheme('dark')
                     }}
                 >
-                    chage
+                    change theme
                 </button>
             </nav>
 

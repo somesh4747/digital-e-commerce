@@ -4,8 +4,7 @@ import { signIn, auth } from '@/auth'
 import { Button } from '@/components/ui/button'
 import db from '@/lib/db'
 import { Card, CardDescription, CardTitle } from '@/components/ui/card'
-import { Link } from 'lucide-react'
-import { formatter } from '@/lib/currency-formatter'
+import Link from 'next/link'
 
 export default async function UserOrdersPage() {
     const session = await auth()
@@ -13,7 +12,7 @@ export default async function UserOrdersPage() {
     if (!session)
         return (
             <>
-                <div className="flex justify-center items-center">
+                <div className="flex justify-center items-center ">
                     <form
                         action={async () => {
                             'use server'
@@ -59,7 +58,7 @@ export default async function UserOrdersPage() {
 
     return (
         <>
-            <div className="flex justify-center items-center gap-3">
+            <div className="flex justify-center items-center gap-3 flex-col md:flex-row flex-wrap p-4">
                 {productArray.map((item, index) => {
                     return (
                         <div key={index}>
@@ -80,8 +79,17 @@ export default async function UserOrdersPage() {
                                     </CardDescription>
                                 </div>
                                 <div className="m-3">
-                                    <Button asChild className="w-full">
-                                        <Link href={`#`}>Download</Link>
+                                    <Button
+                                        asChild
+                                        className="w-full"
+                                        variant={'link'}
+                                    >
+                                        <Link
+                                            href={`/orders/${item?.id}/download`}
+                                            target="_blank"
+                                        >
+                                            Download
+                                        </Link>
                                     </Button>
                                 </div>
                             </Card>

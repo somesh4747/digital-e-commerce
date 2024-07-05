@@ -1,3 +1,4 @@
+import { auth } from '@/auth'
 import db from '@/lib/db'
 import { NextRequest, NextResponse } from 'next/server'
 
@@ -5,6 +6,13 @@ export async function GET(
     req: NextRequest,
     { params: { id } }: { params: { id: string } }
 ) {
+    const session = auth()
+
+    if (!session)
+        return new NextResponse('Unauthorized', {
+            status: 401,
+        })
+
     const product = await db.product.findUnique({
         where: {
             id: id,
@@ -23,7 +31,7 @@ export async function GET(
 
     const objectURL = URL.createObjectURL(blob)
     const size = blob.size
-    console.log(objectURL)
+    // console.log(objectURL)
 
     // getting the file extension
     const path = product.filePath.split('?')[0] // Remove query parameters if present

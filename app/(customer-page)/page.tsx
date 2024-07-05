@@ -1,10 +1,7 @@
 import db from '@/lib/db'
-import NewestProductGrid, {
-    ProductCardSkeleton,
-} from './_components/product-card'
+import { ProductCardSkeleton } from './_components/product-card'
 import ProductCard from './_components/product-card'
 import { Suspense } from 'react'
-import { Product } from '@prisma/client'
 
 async function getPopularProducts() {
     return await db.product.findMany({

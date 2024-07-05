@@ -55,5 +55,6 @@ async function isAuthorized(req: NextRequest) {
 }
 
 export const config = {
-    matcher: ['/((?!.*\\..*|_next).*)', '/', '/(api|trpc)(.*)'],
+    // matcher: ['/((?!.*\\..*|_next).*)', '/', '/(api|trpc)(.*)'],
+    mathcher: ['/admin/:path*'],
 }
