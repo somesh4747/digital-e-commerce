@@ -4,6 +4,7 @@ import './globals.css'
 
 import { ThemeProvider } from '@/components/theme-provider'
 import { SessionProvider } from 'next-auth/react'
+import { cn } from '@/lib/utils'
 
 export const dynamic = 'force-dynamic'
 
@@ -24,7 +25,12 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="en" className="">
-            <body className={inter.className}>
+            <body
+                className={cn(
+                    inter.className,
+                    'bg-gradient-to-bl dark:from-black dark:to-green-900 bg-no-repeat from-white to-sky-300 '
+                )}
+            >
                 <ThemeProvider
                     attribute="class"
                     defaultTheme="dark"

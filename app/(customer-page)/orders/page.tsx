@@ -12,7 +12,7 @@ export default async function UserOrdersPage() {
     if (!session)
         return (
             <>
-                <div className="flex justify-center items-center ">
+                <div className="flex justify-center items-center h-screen">
                     <form
                         action={async () => {
                             'use server'
@@ -58,7 +58,7 @@ export default async function UserOrdersPage() {
 
     return (
         <>
-            <div className="flex justify-center items-center gap-3 flex-col md:flex-row flex-wrap p-4">
+            <div className="flex justify-center items-center gap-3 flex-col md:flex-row flex-wrap p-4 h-full">
                 {productArray.map((item, index) => {
                     return (
                         <div key={index}>

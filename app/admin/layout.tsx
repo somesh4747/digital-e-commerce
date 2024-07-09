@@ -1,5 +1,5 @@
 'use client'
-import NavElement from '@/components/navbar'
+import NavElement from '@/components/nav-element'
 import { useTheme } from 'next-themes'
 
 export const dynamic = 'force-dynamic'

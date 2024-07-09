@@ -12,17 +12,11 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 1. search in products page /
 2. implement caching
+3. refactor products page (server to client component)
 
 ### Home Page
 
-
-
-
-
 ### purchase page
-
-
-
 
 ## Deploy on Vercel
 

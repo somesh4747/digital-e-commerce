@@ -27,7 +27,7 @@ export default function ProductCard({
     image?: string
 }) {
     return (
-        <Card className="w-full md:max-w-[300px] relative shadow-lg">
+        <Card className="w-full md:max-w-[300px] relative shadow-lg border-0 dark:border-gray-700 dark:bg-gradient-to-b  dark:from-black to-transparent dark:bg-transparent">
             <div className=" relative w-full h-auto aspect-video overflow-hidden rounded-t-md">
                 <img src={image} className="w-full h-auto" alt={name} />
             </div>

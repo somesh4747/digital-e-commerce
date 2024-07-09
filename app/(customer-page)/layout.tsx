@@ -1,5 +1,5 @@
 'use client'
-import NavElement from '@/components/navbar'
+import NavElement from '@/components/nav-element'
 import { useTheme } from 'next-themes'
 
 import { Toaster } from '@/components/ui/toaster'
@@ -46,7 +46,7 @@ export default function Layout({
                 </NavElement>
                 <NavElement
                     onClick={() => setisMobileMenu((prev) => !prev)}
-                    href="/products"
+                    href={'/products'}
                 >
                     products
                 </NavElement>
