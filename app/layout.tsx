@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { Poppins } from 'next/font/google'
+import { Poppins, Roboto } from 'next/font/google'
 import './globals.css'
 
 import { ThemeProvider } from '@/components/theme-provider'
@@ -14,7 +14,7 @@ const inter = Poppins({
 })
 
 export const metadata: Metadata = {
-    title: 'Digital-Store-Somesh',
+    title: 'E-Com-Somesh',
     description: 'Created By Somesh',
 }
 

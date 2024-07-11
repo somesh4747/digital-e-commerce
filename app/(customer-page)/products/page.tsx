@@ -43,7 +43,18 @@ export default function Home() {
 
     return (
         <main className="mt-[5px] mx-4 h-[100%] pb-32">
-            <div className="flex-center">
+            <div className=" flex flex-wrap items-center md:mb-16 my-[100px]">
+                <div>
+                    <h1 className="text-5xl md:text-8xl  font-medium ">
+                        All Products
+                    </h1>
+                    <div className="text-left text-slate-300 capitalize md:text-2xl text-xl my-3">
+                        Find your Digital Products Here
+                    </div>
+                </div>
+                <div></div>
+            </div>
+            <div className="flex justify-center items-center">
                 <form
                     onSubmit={(e) => {
                         e.preventDefault()
