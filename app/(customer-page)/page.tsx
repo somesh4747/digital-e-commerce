@@ -42,7 +42,7 @@ const getNewestProducts = async () => {
             imagePath: true,
             cratedAt: true,
         },
-        take: 5,
+        take: 4,
     })
 }
 
@@ -69,8 +69,10 @@ export default async function Home() {
                 </div>
             </div>
             {/* new products */}
-            <div className="">
-                <div className="text-3xl font-medium">New Products</div>
+            <div className="text-center">
+                <div className="text-4xl font-light italic my-10">
+                    New Products
+                </div>
                 <Suspense
                     fallback={
                         <div className="">
@@ -86,8 +88,8 @@ export default async function Home() {
             </div>
 
             {/* popular products */}
-            <div>
-                <div className="text-3xl font-medium my-6">
+            <div className="text-center">
+                <div className="text-4xl font-light italic my-10 mt-20">
                     Popular Products
                 </div>
                 <Suspense
@@ -124,7 +126,7 @@ async function ActualProductElements({
     const newestProducts = await getFunction()
 
     return (
-        <div className="flex flex-wrap justify-start items-start mt-7 gap-4">
+        <div className="flex flex-wrap justify-center items-center mt-7 gap-4">
             {newestProducts.map((product, index) => (
                 <ProductCard
                     productId={product.id}

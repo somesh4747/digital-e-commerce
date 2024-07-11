@@ -62,7 +62,7 @@ export default async function UserOrdersPage() {
                 {productArray.map((item, index) => {
                     return (
                         <div key={index}>
-                            <Card className="w-full md:max-w-[300px] relative shadow-lg">
+                            <Card className="w-full md:max-w-[300px] relative shadow-lg overflow-hidden rounded-xl">
                                 <div className=" relative w-full h-auto aspect-video overflow-hidden rounded-t-md">
                                     <img
                                         src={item?.imagePath}
@@ -78,11 +78,11 @@ export default async function UserOrdersPage() {
                                         {item?.description}
                                     </CardDescription>
                                 </div>
-                                <div className="m-3">
+                                <div className="">
                                     <Button
                                         asChild
-                                        className="w-full"
-                                        variant={'link'}
+                                        className="w-full  bg-lime-800 p-6 text-xl !rounded-none"
+                                        variant={'default'}
                                     >
                                         <Link
                                             href={`/orders/${item?.id}/download`}

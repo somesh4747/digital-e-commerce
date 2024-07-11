@@ -11,6 +11,8 @@ import Image from 'next/image'
 import { formatter } from '@/lib/currency-formatter'
 import { Button } from '@/components/ui/button'
 import { Skeleton } from '@/components/ui/skeleton'
+import { IoStarSharp } from 'react-icons/io5'
+
 import Link from 'next/link'
 
 export default function ProductCard({
@@ -38,6 +40,14 @@ export default function ProductCard({
                 <CardDescription className="line-clamp-2 h-9 my-1 justify-center items-center">
                     {description}
                 </CardDescription>
+            </div>
+            {/* rating system */}
+            <div className="py-2 flex justify-center items-center text-yellow-400 space-x-1">
+                <IoStarSharp />
+                <IoStarSharp />
+                <IoStarSharp />
+                <IoStarSharp />
+                <IoStarSharp />
             </div>
 
             {/* price */}

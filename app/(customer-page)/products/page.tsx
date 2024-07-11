@@ -8,7 +8,7 @@ import { useSearchParams } from 'next/navigation'
 import { useRouter } from 'next/navigation'
 import { FaSearch } from 'react-icons/fa'
 
-export default function Home() {
+export default function SearchProductsComponent() {
     const [searchText, setSearchText] = useState('')
     const router = useRouter()
     const search = useSearchParams()
@@ -43,17 +43,17 @@ export default function Home() {
 
     return (
         <main className="mt-[5px] mx-4 h-[100%] pb-32">
-            <div className=" flex flex-wrap items-center md:mb-16 my-[100px]">
+            <div className=" flex flex-wrap items-center justify-center text-center md:mb-16 my-[100px] mx-4">
                 <div>
-                    <h1 className="text-5xl md:text-8xl  font-medium ">
+                    <h1 className="text-5xl md:text-8xl capitalize font-medium ">
                         All Products
                     </h1>
-                    <div className="text-left text-slate-300 capitalize md:text-2xl text-xl my-3">
-                        Find your Digital Products Here
+                    <div className=" text-slate-300 capitalize md:text-2xl text-xl my-3">
+                        here you will find all your products
                     </div>
                 </div>
-                <div></div>
             </div>
+
             <div className="flex justify-center items-center">
                 <form
                     onSubmit={(e) => {
@@ -84,7 +84,7 @@ export default function Home() {
                     />
                 </form>
             </div>
-            <div className="flex flex-wrap justify-start items-start mt-7  gap-4">
+            <div className="flex flex-wrap justify-center items-center mt-7 gap-4">
                 {data ? (
                     data.map((product, index) => (
                         <ProductCard

@@ -8,6 +8,10 @@
     body {
         @apply bg-background text-foreground;
     }
+    /* for making the background full overflowing body */
+    html {
+        @apply min-h-full;
+    }
 
     .test {
         @apply flex justify-center items-center;

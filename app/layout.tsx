@@ -28,7 +28,7 @@ export default function RootLayout({
             <body
                 className={cn(
                     inter.className,
-                    'bg-gradient-to-bl dark:from-black dark:to-green-900 bg-no-repeat from-white to-sky-300 '
+                    'bg-gradient-to-bl dark:from-black dark:to-green-900 bg-no-repeat from-white to-sky-300'
                 )}
             >
                 <ThemeProvider

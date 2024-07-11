@@ -61,7 +61,7 @@ export default function Layout({
                     <Button
                         onClick={() => signOut()}
                         variant={'link'}
-                        className={'!ml-auto'}
+                        className={'!ml-auto text-red-500'}
                     >
                         Log out
                     </Button>
@@ -69,7 +69,8 @@ export default function Layout({
                     <Button
                         onClick={() => signIn()}
                         variant={'secondary'}
-                        className={'!ml-auto'}
+                        className={'!ml-auto '}
+                        
                     >
                         Log in
                     </Button>
@@ -78,7 +79,7 @@ export default function Layout({
                 {/* <NavElement className={''} href="/admin">
                     admin
                 </NavElement> */}
-                <ThemeToggle />
+                {/* <ThemeToggle /> */}
             </nav>
 
             {children}
