@@ -43,7 +43,7 @@ export default function SearchProductsComponent() {
 
     return (
         <main className="mt-[5px] mx-4 h-[100%] pb-32">
-            <div className=" flex flex-wrap items-center justify-center text-center md:mb-16 my-[100px] mx-4">
+            <div className=" flex flex-wrap items-center justify-center text-center md:mb-16 my-[100px] mx-4 ">
                 <div>
                     <h1 className="text-5xl md:text-8xl capitalize font-medium ">
                         All Products
@@ -99,9 +99,7 @@ export default function SearchProductsComponent() {
                 ) : (
                     <>
                         {isLoading ? (
-                            <div className="">
-                                <ProductCardSkeleton />
-                                <ProductCardSkeleton />
+                            <div className="flex justify-center items-center m-4">
                                 <ProductCardSkeleton />
                                 <ProductCardSkeleton />
                                 <ProductCardSkeleton />

@@ -36,8 +36,8 @@ export default function ProductCard({
             </div>
             {/* heading */}
             <div className="pt-4 text-center">
-                <CardTitle className="capitalize py-2">{name}</CardTitle>
-                <CardDescription className="line-clamp-2 h-9 my-1 justify-center items-center">
+                <CardTitle className="capitalize py-2 font-medium">{name}</CardTitle>
+                <CardDescription className="font-light line-clamp-2 h-9 my-1 justify-center items-center">
                     {description}
                 </CardDescription>
             </div>

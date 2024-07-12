@@ -10,6 +10,7 @@ import { useState } from 'react'
 import { X, AlignJustify } from 'lucide-react'
 
 import { cn } from '@/lib/utils'
+import Footer from '@/components/footer'
 export const dynamic = 'force-dynamic'
 
 export default function Layout({
@@ -70,7 +71,6 @@ export default function Layout({
                         onClick={() => signIn()}
                         variant={'secondary'}
                         className={'!ml-auto '}
-                        
                     >
                         Log in
                     </Button>
@@ -83,6 +83,8 @@ export default function Layout({
             </nav>
 
             {children}
+
+            <Footer />
             <Toaster />
         </div>
     )

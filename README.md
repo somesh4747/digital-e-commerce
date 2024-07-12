@@ -10,10 +10,10 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 # ToDo:
 
-1. search in products page /
-2. implement caching
-3. refactor products page (server to client component)
-4. rate products
+-   [x] search in products page
+-   [x] refactor products page (server to client component)
+-   [ ] implement caching
+-   [ ] rate products
 
 ### Home Page
 
