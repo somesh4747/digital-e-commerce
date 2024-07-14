@@ -23,7 +23,7 @@ export default function Layout({
     const [isMobileMenu, setisMobileMenu] = useState(false)
 
     return (
-        <div>
+        <div className="">
             <Button
                 variant={'outline'}
                 className="m-4 md:hidden"
@@ -82,7 +82,7 @@ export default function Layout({
                 {/* <ThemeToggle /> */}
             </nav>
 
-            {children}
+            <div className="min-h-screen">{children}</div>
 
             <Footer />
             <Toaster />

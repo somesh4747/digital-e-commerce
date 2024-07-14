@@ -76,7 +76,7 @@ export default function PaymentPage({
                             </div>
                             {/* form submit button for useFormStatus */}
                             <Submit />
-                            {/* form submit button for useFormStatus */}
+                            {/* ------------------------------------ */}
                         </form>
 
                         {/* status after submitting form */}

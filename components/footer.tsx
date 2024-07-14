@@ -3,7 +3,7 @@ import { Button } from './ui/button'
 
 export default function Footer() {
     return (
-        <footer className="h-[200px] flex-wrap mt-[100px] flex justify-between p-10 md:gap-0 gap-4 items-center bg-black/30 text-white">
+        <footer className="h-[200px] flex-wrap mt-[100px] flex justify-between p-10 md:gap-0 gap-4 items-center bg-black/30 text-white ">
             <div className="flex flex-col items-start">
                 <Button variant={'link'} className="text-white p-0">
                     <a href="https://github.com/somesh4747/" target="_blank\">

@@ -29,7 +29,10 @@ export default function AdminLayout({
                 </button>
             </nav>
 
-            {children}
+                    <main className='bg-black min-h-screen'>
+
+            {children} 
+                    </main>
             <Toaster />
         </div>
     )

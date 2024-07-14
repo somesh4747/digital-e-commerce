@@ -21,7 +21,6 @@ function NewProductEntry() {
     const { toast } = useToast()
 
     const [response, action] = useFormState(productsEntry, {})
-    const { pending } = useFormStatus()
 
     return (
         <div className=" p-4 m-3">
@@ -119,16 +118,8 @@ function NewProductEntry() {
                     </div>
                 </div>
 
-                <Button type="submit" disabled={pending} className="">
+                <Button type="submit" className="">
                     Add
-                    <span
-                        className={cn('animate-spin', {
-                            invisible: !pending,
-                        })}
-                    >
-                        {' '}
-                        <CgSpinnerAlt />
-                    </span>
                 </Button>
             </form>
         </div>
