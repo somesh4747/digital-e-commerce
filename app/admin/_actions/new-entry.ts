@@ -14,10 +14,10 @@ const productURL = 'digital-e-commerce/products'
 const productImageURL = 'digital-e-commerce/images'
 
 const s3 = new S3Client({
-    region: process.env.AWS_REGION!,
+    region: process.env.NEXT_AWS_REGION!,
     credentials: {
-        accessKeyId: process.env.AWS_ACCESS_KEY!,
-        secretAccessKey: process.env.AWS_ACCESS_SECRET_KEY!,
+        accessKeyId: process.env.NEXT_AWS_ACCESS_KEY!,
+        secretAccessKey: process.env.NEXT_AWS_ACCESS_SECRET_KEY!,
     },
 })
 
@@ -46,11 +46,11 @@ export default async function productsEntry(
 
     // creating and sending file to signedURL
     const fileUploadCommand = new PutObjectCommand({
-        Bucket: process.env.AWS_S3_BUCKET_NAME!,
+        Bucket: process.env.NEXT_AWS_S3_BUCKET_NAME!,
         Key: `${productURL}/${fileName}`,
     })
     const imageUploadCommand = new PutObjectCommand({
-        Bucket: process.env.AWS_S3_BUCKET_NAME!,
+        Bucket: process.env.NEXT_AWS_S3_BUCKET_NAME!,
         Key: `${productImageURL}/${imageName}`,
     })
 
@@ -78,8 +78,8 @@ export default async function productsEntry(
 
     // https://sk-my-first-bucket.s3.ap-south-1.amazonaws.com/digital-e-commerce/products/245c4f73-f9a5-4749-a2a4-3373ae6d3b7c__for_downloading_.png
 
-    const filePath = `https://${process.env.AWS_S3_BUCKET_NAME}.s3.${process.env.AWS_REGION}.amazonaws.com/${productURL}/${fileName}`
-    const imagePath = `https://${process.env.AWS_S3_BUCKET_NAME}.s3.${process.env.AWS_REGION}.amazonaws.com/${productImageURL}/${imageName}`
+    const filePath = `https://${process.env.NEXT_AWS_S3_BUCKET_NAME}.s3.${process.env.NEXT_AWS_REGION}.amazonaws.com/${productURL}/${fileName}`
+    const imagePath = `https://${process.env.NEXT_AWS_S3_BUCKET_NAME}.s3.${process.env.NEXT_AWS_REGION}.amazonaws.com/${productImageURL}/${imageName}`
     // return
     await db.product.create({
         data: {

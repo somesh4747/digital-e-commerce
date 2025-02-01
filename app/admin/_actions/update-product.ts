@@ -16,10 +16,10 @@ const productURL = 'digital-e-commerce/products'
 const productImageURL = 'digital-e-commerce/images'
 
 const s3 = new S3Client({
-    region: process.env.AWS_REGION!,
+    region: process.env.NEXT_AWS_REGION!,
     credentials: {
-        accessKeyId: process.env.AWS_ACCESS_KEY!,
-        secretAccessKey: process.env.AWS_ACCESS_SECRET_KEY!,
+        accessKeyId: process.env.NEXT_AWS_ACCESS_KEY!,
+        secretAccessKey: process.env.NEXT_AWS_ACCESS_SECRET_KEY!,
     },
 })
 
@@ -56,7 +56,7 @@ export default async function productUpdate(
 
     if (downloadableItem.size > 0) {
         const fileDeleteCommand = new DeleteObjectCommand({
-            Bucket: process.env.AWS_S3_BUCKET_NAME!,
+            Bucket: process.env.NEXT_AWS_S3_BUCKET_NAME!,
             Key: `${productURL}/__${previousFileName}`,
         })
         await s3.send(fileDeleteCommand)
@@ -67,7 +67,7 @@ export default async function productUpdate(
 
         // creating and sending file to signedURL
         const fileUploadCommand = new PutObjectCommand({
-            Bucket: process.env.AWS_S3_BUCKET_NAME!,
+            Bucket: process.env.NEXT_AWS_S3_BUCKET_NAME!,
             Key: `${productURL}/${fileName}`,
         })
 
@@ -82,14 +82,14 @@ export default async function productUpdate(
                 'Content-type': downloadableItem.type,
             },
         })
-        filePath = `https://${process.env.AWS_S3_BUCKET_NAME}.s3.${process.env.AWS_REGION}.amazonaws.com/${productURL}/${fileName}`
+        filePath = `https://${process.env.NEXT_AWS_S3_BUCKET_NAME}.s3.${process.env.NEXT_AWS_REGION}.amazonaws.com/${productURL}/${fileName}`
     }
 
     let imagePath = undefined
 
     if (image.size > 0) {
         const imageDeleteCommand = new DeleteObjectCommand({
-            Bucket: process.env.AWS_S3_BUCKET_NAME!,
+            Bucket: process.env.NEXT_AWS_S3_BUCKET_NAME!,
             Key: `${productImageURL}/__${previousImageName}`,
         })
         await s3.send(imageDeleteCommand)
@@ -100,7 +100,7 @@ export default async function productUpdate(
             .replace(/ /gi, '-')}`
 
         const imageUploadCommand = new PutObjectCommand({
-            Bucket: process.env.AWS_S3_BUCKET_NAME!,
+            Bucket: process.env.NEXT_AWS_S3_BUCKET_NAME!,
             Key: `${productImageURL}/${imageName}`,
         })
         const signedUrlForImage = await getSignedUrl(s3, imageUploadCommand, {
@@ -114,7 +114,7 @@ export default async function productUpdate(
             },
         })
 
-        imagePath = `https://${process.env.AWS_S3_BUCKET_NAME}.s3.${process.env.AWS_REGION}.amazonaws.com/${productImageURL}/${imageName}`
+        imagePath = `https://${process.env.NEXT_AWS_S3_BUCKET_NAME}.s3.${process.env.NEXT_AWS_REGION}.amazonaws.com/${productImageURL}/${imageName}`
     }
 
     // creating file and image name
